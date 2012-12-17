@@ -61,26 +61,24 @@ Temporarily install and instantiate a Transformifier. Set it to act on the CALay
 * Move rows from the source section to the active section to add a new transform. 
 	* Move rows from the active section to the source section to remove its effect. 
 	* The source section will always contain one of each type of transform regardless of what you move out or into it. 
-	* You can add as many transforms as you need to achieve the affect you need.
-
+	* You can add as many transforms as you need to achieve the affect you need.  
+  
+        
 * Since some transforms are not commutative, you may reorder them in the active section to get a different effect. 
-	* Reordering rows in the source section has no effect, except possibly placing a frequently used transform within easier reach.
-
-![Transformifier Table Sections](Transformifier/wiki/images/transformifier3.png)
-
- 
-* If you get tangled up, click the reload button to tango on.
-
- 
+	* Reordering rows in the source section has no effect, except possibly placing a frequently used transform within easier reach.  
+        
+* If you get tangled up, click the reload button to tango on.  
+        
 * Once your target effect is achieved, click the actions button to reveal the code needed to replicate it.
 	* Click in the new visible UITextView to copy its contents to the iOS pasteboard in the simulator
 	* Press ⌘-c to copy the code to the OSX clipboard, then paste it into xcode.
 	* There are 3 types of output:
 		* A human-readable description of all the transforms applied
 		* A set of CATransform3D functions to replicate the transforms in code
-		* A single CATransform3D transform containing the final, concatenated effect of the active transforms.
-	* Use either the step-by-step transform functions or the final aggregate to apply to your target UI element's layer.
+		* A single CATransform3D containing the final, concatenated effect of the active transforms.
+	* Use either the step-by-step transform functions or the final aggregate to apply to your target UI element's layer.  
 
+![Transformifier Table Sections](Transformifier/wiki/images/transformifier3.png)
 ![Transformifier Table Sections](Transformifier/wiki/images/transformifier4.png)
 ![Transformifier Table Sections](Transformifier/wiki/images/transformifier5.png)
 
