@@ -45,7 +45,7 @@ Temporarily install and instantiate a Transformifier. Set it to act on the CALay
 	}
 
 
-### Tool usage:
+## Tool usage:
 
 
 * The transformifier instantiates as a UITableView with 2 sections. 
@@ -58,27 +58,64 @@ Temporarily install and instantiate a Transformifier. Set it to act on the CALay
 
 ![Transformifier Table Sections](Transformifier/wiki/images/transformifier2.png)
  
-* Move rows from the source section to the active section to add a new transform. 
+* Move rows from the source section to the active section to add a new transform.
+
 	* Move rows from the active section to the source section to remove its effect. 
+
 	* The source section will always contain one of each type of transform regardless of what you move out or into it. 
+
 	* You can add as many transforms as you need to achieve the affect you need.  
   
         
-* Since some transforms are not commutative, you may reorder them in the active section to get a different effect. 
+* Since some transforms are not commutative, you may reorder them in the active section to get a different effect.
+
 	* Reordering rows in the source section has no effect, except possibly placing a frequently used transform within easier reach.  
         
 * If you get tangled up, click the reload button to tango on.  
         
 * Once your target effect is achieved, click the actions button to reveal the code needed to replicate it.
+
 	* Click in the new visible UITextView to copy its contents to the iOS pasteboard in the simulator
+
 	* Press ⌘-c to copy the code to the OSX clipboard, then paste it into xcode.
+
 	* There are 3 types of output:
+
 		* A human-readable description of all the transforms applied
+
 		* A set of CATransform3D functions to replicate the transforms in code
+
 		* A single CATransform3D containing the final, concatenated effect of the active transforms.
+
 	* Use either the step-by-step transform functions or the final aggregate to apply to your target UI element's layer.  
 
 ![Transformifier Table Sections](Transformifier/wiki/images/transformifier3.png)
 ![Transformifier Table Sections](Transformifier/wiki/images/transformifier4.png)
 ![Transformifier Table Sections](Transformifier/wiki/images/transformifier5.png)
+
+
+
+
+## License
+
+Copyright (c) 2012 eMaza Mobile. All rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
