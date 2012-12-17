@@ -5,16 +5,16 @@ Generic Interactive 3D Transformation Tweaking Tool for iOS Development
 **The scenario:**  
 Your designer hands you psd or png files to skin the app. 
 
-No problem. except there's this element that's like this original element, except it's skewed just so. 
+No problem. Except there's this element that's like this original element, except it's skewed just so. 
 
 The gotcha: the element is dynamic at runtime.  Thus, you can't simply save the designer's sample as a static png. You must render and recreate the skew in code.
 
 And no, the transformation values are not available, since they were applied freehand in Photoshop.
 
-**One approach**  
+**One approach:**  
 After spending an inordinate amount of time applying a series of transforms in a never-ending trial-and-error nightmare, you realize it's not a simple 2D skew, or even couple of 3D axis rotations. What the heck did the designer do?
 
-**Better Idea**  
+**A Better Idea:**  
 Temporarily install and instantiate a Transformifier. Set it to act on the CALayer of the victim element on the screen, and interactively set functions and values until you get exactly the desired effect. Click the output icon to get fully formed, ready to paste text to replicate the effect in code.
 
 ## Installation:
@@ -88,9 +88,9 @@ You'll need to download this entire repo for the sample app to work, as the Tran
 	* A single CATransform3D containing the final, concatenated effect of the active transforms.
 * Use either the step-by-step transform functions or the final aggregate to apply to your target UI element's layer.  
 
-![Transformifier Table Sections](Transformifier/wiki/images/transformifier3.png)
-![Transformifier Table Sections](Transformifier/wiki/images/transformifier4.png)
-![Transformifier Table Sections](Transformifier/wiki/images/transformifier5.png)
+![Transformifier Table Sections](Transformifier/wiki/images/transformifier3.png)  
+![Transformifier Table Sections](Transformifier/wiki/images/transformifier4.png)  
+![Transformifier Table Sections](Transformifier/wiki/images/transformifier5.png)  
 
 
 
