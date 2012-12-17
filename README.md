@@ -56,15 +56,17 @@ Temporarily install and instantiate a Transformifier. Set it to act on the CALay
 * Each row in the table describes what that transform does. 
 	* Use the slider to adjust the amount of transformation, and the segmented control to choose which axis to act upon.
 
+![Transformifier Table Sections](Transformifier/wiki/images/transformifier2.png)
  
 * Move rows from the source section to the active section to add a new transform. 
 	* Move rows from the active section to the source section to remove its effect. 
 	* The source section will always contain one of each type of transform regardless of what you move out or into it. 
 	* You can add as many transforms as you need to achieve the affect you need.
 
- 
 * Since some transforms are not commutative, you may reorder them in the active section to get a different effect. 
 	* Reordering rows in the source section has no effect, except possibly placing a frequently used transform within easier reach.
+
+![Transformifier Table Sections](Transformifier/wiki/images/transformifier3.png)
 
  
 * If you get tangled up, click the reload button to tango on.
@@ -78,4 +80,7 @@ Temporarily install and instantiate a Transformifier. Set it to act on the CALay
 		* A set of CATransform3D functions to replicate the transforms in code
 		* A single CATransform3D transform containing the final, concatenated effect of the active transforms.
 	* Use either the step-by-step transform functions or the final aggregate to apply to your target UI element's layer.
+
+![Transformifier Table Sections](Transformifier/wiki/images/transformifier4.png)
+![Transformifier Table Sections](Transformifier/wiki/images/transformifier5.png)
 
