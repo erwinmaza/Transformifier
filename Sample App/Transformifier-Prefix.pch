@@ -1,0 +1,30 @@
+//
+// Prefix header for all source files of the 'Transformifier' target in the 'Transformifier' project
+//
+
+#import <Availability.h>
+
+
+#ifdef DEBUG
+	#define LogMethod						NSLog(@"%s-%d", __PRETTY_FUNCTION__, __LINE__);
+	#define LogMethodArgs(format, ... ) 	NSLog(@"%s: %@", __PRETTY_FUNCTION__, [NSString stringWithFormat:format, ##__VA_ARGS__] );
+#else
+	#define LogMethod						{}
+	#define LogMethodArgs(format, ... )		{}
+#endif
+
+
+#ifndef __IPHONE_4_0
+	#warning "This project uses features only available in iOS SDK 4.0 and later."
+#endif
+
+#ifdef __OBJC__
+
+	#import <UIKit/UIKit.h>
+	#import <Foundation/Foundation.h>
+	#import <QuartzCore/QuartzCore.h>
+	#import <CoreData/CoreData.h>
+
+	#import "EMiOS+Convention.h"
+
+#endif

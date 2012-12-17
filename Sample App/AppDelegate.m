@@ -1,0 +1,69 @@
+//  AppDelegate.m
+//  Created by erwin on 12/14/12.
+
+/*
+	
+	Copyright (c) 2012 eMaza Mobile. All rights reserved.
+
+	Permission is hereby granted, free of charge, to any person obtaining
+	a copy of this software and associated documentation files (the
+	"Software"), to deal in the Software without restriction, including
+	without limitation the rights to use, copy, modify, merge, publish,
+	distribute, sublicense, and/or sell copies of the Software, and to
+	permit persons to whom the Software is furnished to do so, subject to
+	the following conditions:
+
+	The above copyright notice and this permission notice shall be
+	included in all copies or substantial portions of the Software.
+
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+	EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+	MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+	NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+	LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+	OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+*/
+
+
+#import "AppDelegate.h"
+#import "ViewController.h"
+
+@implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	LogMethod
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+	if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+	    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil];
+	} else {
+	    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPad" bundle:nil];
+	}
+	self.window.rootViewController = self.viewController;
+    [self.window makeKeyAndVisible];
+    return YES;
+}
+
+- (void)applicationWillResignActive:(UIApplication *)application {
+	LogMethod
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+	LogMethod
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+	LogMethod
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+	LogMethod
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application {
+	LogMethod
+}
+
+@end
