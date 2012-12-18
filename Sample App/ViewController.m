@@ -27,7 +27,6 @@
 */
 
 
-
 #import "ViewController.h"
 #import "Transformifier.h"
 
@@ -49,9 +48,17 @@
 - (void)viewDidAppear:(BOOL)animated {
 	LogMethod
 	[super viewDidAppear:animated];
+
 	self.transformifier = [[Transformifier alloc] initForLayer:victimLabel.layer];
-	transformifier.yOffset = 25;
-	transformifier.height = 350;
+
+	if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+		transformifier.yOffset = 25;
+		transformifier.height = 350;
+	} else {
+		transformifier.yOffset = 100;
+		transformifier.height = 850;
+	}
+
 	transformifier.view.alpha = 0.0;
 	
 	[self.view.superview insertSubview:transformifier.view aboveSubview:self.view];

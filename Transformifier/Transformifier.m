@@ -63,7 +63,7 @@ typedef enum {
 }
 
 - (void)loadView {
-	table = [[UITableView alloc] initWithFrame:CGRectMake(10, yOffset, 300, height) style:UITableViewStyleGrouped];
+	table = [[UITableView alloc] initWithFrame:CGRectMake(25, yOffset, 270, height) style:UITableViewStyleGrouped];
 	table.delegate = self;
 	table.dataSource = self;
 	table.backgroundView = nil;
@@ -71,7 +71,7 @@ typedef enum {
 	self.view = table;
 	[table registerClass:[TransformifierCell class]];
 	
-	self.outputView = [[UITextView alloc] initWithFrame:CGRectMake(0, 50, 300, 250)];
+	self.outputView = [[UITextView alloc] initWithFrame:CGRectMake(0, 50, 270, height - 100)];
 	outputView.layer.cornerRadius = 10;
 	outputView.editable = FALSE;
 	[self.view addSubview:outputView];
@@ -227,7 +227,6 @@ typedef enum {
 }
 
 - (void)copyText {
-	LogMethod
 	[[UIPasteboard generalPasteboard] setString:outputView.text];
 
 	outputView.text = @"\nThe output has been copied to the iOS pasteboard.\n\nPress ⌘-c to copy it to the OSX clipboard, for pasting into xcode.\n\nClick the action button to dismiss this text view.";
@@ -245,7 +244,7 @@ typedef enum {
 	if (section == 1) return [sourceArray count];
 	return 0;
 }
-- (CGFloat)	 tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath { return 55; }
+- (CGFloat)	 tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath { return 60; }
 - (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath { return FALSE; }
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {	return TRUE; }
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath { return UITableViewCellEditingStyleNone; }
@@ -303,17 +302,17 @@ typedef enum {
 		[self.contentView addSubview:actionLabel];
 	
 		self.axisChooser = [[UISegmentedControl alloc] initWithItems:@[@"X", @"Y", @"Z"]];
-		axisChooser.frame = CGRectMake(95, 2, 100, 25);
+		axisChooser.frame = CGRectMake(95, 4, 75, 25);
 		axisChooser.tintColor = [UIColor lightGrayColor];
 		axisChooser.segmentedControlStyle = UISegmentedControlStyleBar;
 		[self.contentView addSubview:axisChooser];
 		
-		self.valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 2, 60, 25)];
+		self.valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(175, 2, 45, 25)];
 		valueLabel.font = [UIFont systemFontOfSize:13];
 		valueLabel.backgroundColor = [UIColor clearColor];
 		[self.contentView addSubview:valueLabel];
 		
-		self.slider = [[UISlider alloc] initWithFrame:CGRectMake(10, 30, 200, 20)];
+		self.slider = [[UISlider alloc] initWithFrame:CGRectMake(10, 35, 200, 20)];
 		[self.contentView addSubview:slider];
 
 		[axisChooser addTarget:self	action:@selector(setAxisIndex)  forControlEvents:UIControlEventValueChanged];
@@ -326,7 +325,7 @@ typedef enum {
 - (void)layoutSubviews {
 	[super layoutSubviews];
 	int tableWidth = self.contentView.frame.size.width;
-	slider.frame = CGRectMake(slider.frame.origin.x, slider.frame.origin.y, tableWidth - 45, slider.frame.size.height);
+	slider.frame = CGRectMake(slider.frame.origin.x, slider.frame.origin.y, tableWidth - 15, slider.frame.size.height);
 	self.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
 }
 
@@ -377,7 +376,6 @@ typedef enum {
 }
 
 - (void)setAxisIndex {
-	LogMethod
 	[transformData setValue:[NSNumber numberWithInt:axisChooser.selectedSegmentIndex] forKey:@"axisIndex"];
 	[delegate applyTransform];
 }

@@ -25,6 +25,8 @@
 		AA87E466167BE76100E60E16 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA87E465167BE76100E60E16 /* QuartzCore.framework */; };
 		AA8893F8167FBC1E00C90943 /* 57_app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8893F6167FBC1E00C90943 /* 57_app_icon.png */; };
 		AA8893F9167FBC1E00C90943 /* 114_app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8893F7167FBC1E00C90943 /* 114_app_icon.png */; };
+		AAA829A31680AE7A004BFC50 /* 72_app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AAA829A11680AE7A004BFC50 /* 72_app_icon.png */; };
+		AAA829A41680AE7A004BFC50 /* 144_app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AAA829A21680AE7A004BFC50 /* 144_app_icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,8 @@
 		AA87E465167BE76100E60E16 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AA8893F6167FBC1E00C90943 /* 57_app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57_app_icon.png; sourceTree = "<group>"; };
 		AA8893F7167FBC1E00C90943 /* 114_app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114_app_icon.png; sourceTree = "<group>"; };
+		AAA829A11680AE7A004BFC50 /* 72_app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 72_app_icon.png; sourceTree = "<group>"; };
+		AAA829A21680AE7A004BFC50 /* 144_app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 144_app_icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,8 @@
 		AA87E408167B57DA00E60E16 = {
 			isa = PBXGroup;
 			children = (
+				AAA829A11680AE7A004BFC50 /* 72_app_icon.png */,
+				AAA829A21680AE7A004BFC50 /* 144_app_icon.png */,
 				AA8893F6167FBC1E00C90943 /* 57_app_icon.png */,
 				AA8893F7167FBC1E00C90943 /* 114_app_icon.png */,
 				AA87E43D167B596B00E60E16 /* Default-568h@2x.png */,
@@ -193,6 +199,8 @@
 				AA87E454167B596B00E60E16 /* ViewController_iPhone.xib in Resources */,
 				AA8893F8167FBC1E00C90943 /* 57_app_icon.png in Resources */,
 				AA8893F9167FBC1E00C90943 /* 114_app_icon.png in Resources */,
+				AAA829A31680AE7A004BFC50 /* 72_app_icon.png in Resources */,
+				AAA829A41680AE7A004BFC50 /* 144_app_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
