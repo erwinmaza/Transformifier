@@ -7,7 +7,7 @@ Your designer hands you psd or png files to skin the app.
 
 No problem. Except there's this element that's like this original element, except it's skewed just so. 
 
-The gotcha: the element is dynamic at runtime.  Thus, you can't simply save the designer's sample as a static png. You must render and recreate the skew in code.
+The gotcha: the element is dynamic at runtime.  Thus, you can't simply save the designer's sample as a static png. You must render the element and recreate the skew in code.
 
 And no, the transformation values are not available, since they were applied freehand in Photoshop.
 
