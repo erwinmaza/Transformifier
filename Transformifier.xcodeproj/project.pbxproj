@@ -20,7 +20,6 @@
 		AA87E455167B596B00E60E16 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA87E449167B596B00E60E16 /* main.m */; };
 		AA87E457167B596B00E60E16 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA87E44D167B596B00E60E16 /* ViewController.m */; };
 		AA87E45A167B6C4B00E60E16 /* Transformifier.m in Sources */ = {isa = PBXBuildFile; fileRef = AA87E459167B6C4B00E60E16 /* Transformifier.m */; };
-		AA87E462167BE64B00E60E16 /* EMiOS+Convention.m in Sources */ = {isa = PBXBuildFile; fileRef = AA87E461167BE64B00E60E16 /* EMiOS+Convention.m */; };
 		AA87E464167BE6E900E60E16 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA87E463167BE6E900E60E16 /* CoreData.framework */; };
 		AA87E466167BE76100E60E16 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA87E465167BE76100E60E16 /* QuartzCore.framework */; };
 		AA8893F8167FBC1E00C90943 /* 57_app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8893F6167FBC1E00C90943 /* 57_app_icon.png */; };
@@ -49,8 +48,6 @@
 		AA87E44D167B596B00E60E16 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		AA87E458167B6C4B00E60E16 /* Transformifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transformifier.h; sourceTree = "<group>"; };
 		AA87E459167B6C4B00E60E16 /* Transformifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transformifier.m; sourceTree = "<group>"; };
-		AA87E460167BE64B00E60E16 /* EMiOS+Convention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "EMiOS+Convention.h"; path = "../../EMiOS+Convention/EMiOS+Convention.h"; sourceTree = "<group>"; };
-		AA87E461167BE64B00E60E16 /* EMiOS+Convention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "EMiOS+Convention.m"; path = "../../EMiOS+Convention/EMiOS+Convention.m"; sourceTree = "<group>"; };
 		AA87E463167BE6E900E60E16 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		AA87E465167BE76100E60E16 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AA8893F6167FBC1E00C90943 /* 57_app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57_app_icon.png; sourceTree = "<group>"; };
@@ -124,8 +121,6 @@
 		AA87E440167B596B00E60E16 /* Sample App */ = {
 			isa = PBXGroup;
 			children = (
-				AA87E460167BE64B00E60E16 /* EMiOS+Convention.h */,
-				AA87E461167BE64B00E60E16 /* EMiOS+Convention.m */,
 				AA87E441167B596B00E60E16 /* AppDelegate.h */,
 				AA87E442167B596B00E60E16 /* AppDelegate.m */,
 				AA87E44C167B596B00E60E16 /* ViewController.h */,
@@ -215,7 +210,6 @@
 				AA87E455167B596B00E60E16 /* main.m in Sources */,
 				AA87E457167B596B00E60E16 /* ViewController.m in Sources */,
 				AA87E45A167B6C4B00E60E16 /* Transformifier.m in Sources */,
-				AA87E462167BE64B00E60E16 /* EMiOS+Convention.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

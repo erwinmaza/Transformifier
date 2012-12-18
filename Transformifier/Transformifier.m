@@ -48,7 +48,7 @@ typedef enum {
 
 
 @implementation Transformifier {
-		UITableView *table;
+	UITableView *table;
 }
 
 @synthesize layer, transformsArray, sourceArray, outputView, toolbar, yOffset, height;
@@ -69,18 +69,19 @@ typedef enum {
 	table.backgroundView = nil;
 	table.editing = TRUE;
 	self.view = table;
-	[table registerClass:[TransformifierCell class]];
+	[table registerClass:[TransformifierCell class] forCellReuseIdentifier:NSStringFromClass([TransformifierCell class])];
+	
+	[self reload];
 	
 	self.outputView = [[UITextView alloc] initWithFrame:CGRectMake(0, 50, 270, height - 100)];
 	outputView.layer.cornerRadius = 10;
 	outputView.editable = FALSE;
+	outputView.alpha = 0.0;
 	[self.view addSubview:outputView];
 	
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(copyText)];
 	[outputView addGestureRecognizer:tap];
 
-	[self reload];
-	
 	UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reload)];
 	UIBarButtonItem *writeButton =  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(writeTransform)];
 	self.toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 65, -5, 65, 25)];
@@ -91,14 +92,14 @@ typedef enum {
 
 - (void)reload {
 	NSNumber *zeroInt = [NSNumber numberWithInt:0];
-	NSMutableDictionary *rotate =    [NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeRotate],	@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  0.0] }];
-	NSMutableDictionary *translate = [NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeTranslate],	@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  0.0] }];
-	NSMutableDictionary *scale =     [NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeScale],		@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:100.0] }];
-	NSMutableDictionary *skew =		 [NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeSkew],		@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  0.0] }];
-	NSMutableDictionary *pinch =	 [NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypePerspective],@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  0.0] }];
+	NSMutableDictionary *rotate =		[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeRotate],		@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  0.0] }];
+	NSMutableDictionary *translate =	[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeTranslate],	@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  0.0] }];
+	NSMutableDictionary *scale =		[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeScale],		@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:100.0] }];
+	NSMutableDictionary *skew =			[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeSkew],		@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  0.0] }];
+	NSMutableDictionary *perspective =	[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypePerspective],@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  0.0] }];
 
 	self.transformsArray =	[NSMutableArray arrayWithArray:@[ rotate, translate, scale ]];
-	self.sourceArray =		[NSMutableArray arrayWithArray:@[ skew, pinch, rotate, translate, scale ]];
+	self.sourceArray =		[NSMutableArray arrayWithArray:@[ skew, perspective, rotate, translate, scale ]];
 
 	[table reloadData];
 	[outputView resignFirstResponder];
@@ -250,7 +251,7 @@ typedef enum {
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath { return UITableViewCellEditingStyleNone; }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	TransformifierCell *cell = [tableView dequeueCellWithClass:[TransformifierCell class] forIndexPath:indexPath];
+	TransformifierCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TransformifierCell class]) forIndexPath:indexPath];
 	cell.delegate = self;
 	cell.enabled = (indexPath.section == 0);
 	
