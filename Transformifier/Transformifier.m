@@ -31,8 +31,8 @@
 typedef enum {
 	transformTypeRotate 	= 1,
 	transformTypeTranslate	= 2,
-	transformTypeScale		= 3,
-	transformTypeSkew		= 4,
+	transformTypeScale      = 3,
+	transformTypeSkew       = 4,
 	transformTypePerspective= 5
 } enumTransformType;
 
@@ -95,7 +95,7 @@ typedef enum {
 	NSMutableDictionary *rotate =		[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeRotate],		@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  0.0] }];
 	NSMutableDictionary *translate =	[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeTranslate],	@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  0.0] }];
 	NSMutableDictionary *scale =		[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeScale],		@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:100.0] }];
-	NSMutableDictionary *skew =			[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeSkew],		@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  0.0] }];
+	NSMutableDictionary *skew = 		[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeSkew],		@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  0.0] }];
 	NSMutableDictionary *perspective =	[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypePerspective],@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  0.0] }];
 
 	self.transformsArray =	[NSMutableArray arrayWithArray:@[ rotate, translate, scale ]];
@@ -245,7 +245,7 @@ typedef enum {
 	if (section == 1) return [sourceArray count];
 	return 0;
 }
-- (CGFloat)	 tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath { return 60; }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath { return 60; }
 - (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath { return FALSE; }
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {	return TRUE; }
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath { return UITableViewCellEditingStyleNone; }
@@ -265,7 +265,7 @@ typedef enum {
 	if (sourceIndexPath.section == destinationIndexPath.section) {
 		NSMutableArray *array = (sourceIndexPath.section == 0)? transformsArray : sourceArray;
 		
-		NSNumber *tmp = [array objectAtIndex:sourceIndexPath.row];
+		NSMutableArray *tmp = [array objectAtIndex:sourceIndexPath.row];
 		[array removeObjectAtIndex:sourceIndexPath.row];
 		[array insertObject:tmp atIndex:destinationIndexPath.row];
 	} else {
@@ -316,8 +316,8 @@ typedef enum {
 		self.slider = [[UISlider alloc] initWithFrame:CGRectMake(10, 35, 200, 20)];
 		[self.contentView addSubview:slider];
 
-		[axisChooser addTarget:self	action:@selector(setAxisIndex)  forControlEvents:UIControlEventValueChanged];
-		[slider		 addTarget:self	action:@selector(setValueLabel) forControlEvents:UIControlEventValueChanged];
+		[axisChooser addTarget:self action:@selector(setAxisIndex)  forControlEvents:UIControlEventValueChanged];
+		[slider		 addTarget:self action:@selector(setValueLabel) forControlEvents:UIControlEventValueChanged];
 	}
 	
 	return self;
