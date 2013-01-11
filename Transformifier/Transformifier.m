@@ -117,24 +117,24 @@ typedef enum {
 		
 		switch (type) {
 			case transformTypeRotate: {
-				transform =	CATransform3DRotate(transform,	value * M_PI / 180.0, (axisIndex == 0), (axisIndex == 1), (axisIndex == 2));
+				transform =	CATransform3DRotate(transform,	value * (float)M_PI / 180.0f, (axisIndex == 0), (axisIndex == 1), (axisIndex == 2));
 				break;
 			} case transformTypeTranslate: {
 				transform = CATransform3DTranslate(transform, value * (axisIndex == 0), value * (axisIndex == 1), value * (axisIndex == 2));
 				break;
 			} case transformTypeScale: {
-				value = (value / 100) - 1.0;
-				transform = CATransform3DScale(transform, value * (axisIndex == 0) + 1.0, value * (axisIndex == 1) + 1.0, value * (axisIndex == 2) + 1.0);
+				value = (value / 100.0f) - 1.0f;
+				transform = CATransform3DScale(transform, value * (axisIndex == 0) + 1.0f, value * (axisIndex == 1) + 1.0f, value * (axisIndex == 2) + 1.0f);
 				break;
 			} case transformTypeSkew: {
-				value = (value / 100.0);
+				value = (value / 100.0f);
 				tmp = CATransform3DIdentity;
 				tmp.m21 = value * (axisIndex == 0);
 				tmp.m12 = value * (axisIndex == 1);
 				transform = CATransform3DConcat(transform, tmp);
 				break;
 			} case transformTypePerspective: {
-				value = (value / 100.0);
+				value = (value / 100.0f);
 				tmp = CATransform3DIdentity;
 				tmp.m34 = value;
 				transform = CATransform3DConcat(transform, tmp);
@@ -170,30 +170,30 @@ typedef enum {
 		switch (type) {
 			case transformTypeRotate: {
 				humanOutput = [humanOutput stringByAppendingFormat:@"Rotate around %@ by %0.2f degrees\n", axis, value];
-				codeOutput = [codeOutput stringByAppendingFormat:@"transform = CATransform3DRotate(transform, %0.4f, %d, %d, %d);\n", value * M_PI / 180.0, (axisIndex == 0), (axisIndex == 1), (axisIndex == 2)];
+				codeOutput = [codeOutput stringByAppendingFormat:@"transform = CATransform3DRotate(transform, %0.4ff, %d, %d, %d);\n", value * (float)M_PI / 180.0f, (axisIndex == 0), (axisIndex == 1), (axisIndex == 2)];
 				break;
 			} case transformTypeTranslate: {
 				humanOutput = [humanOutput stringByAppendingFormat:@"Translate along %@ by %0.2f points\n", axis, value];
-				codeOutput = [codeOutput stringByAppendingFormat:@"transform = CATransform3DTranslate(transform, %0.4f, %0.4f, %0.4f);\n", value * (axisIndex == 0), value * (axisIndex == 1), value * (axisIndex == 2)];
+				codeOutput = [codeOutput stringByAppendingFormat:@"transform = CATransform3DTranslate(transform, %0.4ff, %0.4ff, %0.4ff);\n", value * (axisIndex == 0), value * (axisIndex == 1), value * (axisIndex == 2)];
 				break;
 			} case transformTypeScale: {
 				humanOutput = [humanOutput stringByAppendingFormat:@"Scale %@ by %0.2f percent\n", axis, value];
-				value = (value / 100) - 1.0;
-				codeOutput = [codeOutput stringByAppendingFormat:@"transform = CATransform3DScale(transform, %0.4f, %0.4f, %0.4f);\n", value * (axisIndex == 0) + 1.0, value * (axisIndex == 1) + 1.0, value * (axisIndex == 2) + 1.0];
+				value = (value / 100.0f) - 1.0f;
+				codeOutput = [codeOutput stringByAppendingFormat:@"transform = CATransform3DScale(transform, %0.4ff, %0.4ff, %0.4ff);\n", value * (axisIndex == 0) + 1.0f, value * (axisIndex == 1) + 1.0f, value * (axisIndex == 2) + 1.0f];
 				break;
 			} case transformTypeSkew: {
 				humanOutput = [humanOutput stringByAppendingFormat:@"Skew along %@ by %0.2f percent\n", axis, value];
-				value = (value / 100.0);
+				value = (value / 100.0f);
 				codeOutput = [codeOutput stringByAppendingFormat:@"tmp = CATransform3DIdentity;\n"];
-				codeOutput = [codeOutput stringByAppendingFormat:@"tmp.m21 = %0.4f;\n", value * (axisIndex == 0)];
-				codeOutput = [codeOutput stringByAppendingFormat:@"tmp.m12 = %0.4f;\n", value * (axisIndex == 1)];
+				codeOutput = [codeOutput stringByAppendingFormat:@"tmp.m21 = %0.4ff;\n", value * (axisIndex == 0)];
+				codeOutput = [codeOutput stringByAppendingFormat:@"tmp.m12 = %0.4ff;\n", value * (axisIndex == 1)];
 				codeOutput = [codeOutput stringByAppendingFormat:@"transform = CATransform3DConcat(transform, tmp);\n"];
 				break;
 			} case transformTypePerspective: {
 				humanOutput = [humanOutput stringByAppendingFormat:@"Apply %0.2f percent of perspective\n", value];
-				value = (value / 100.0);
+				value = (value / 100.0f);
 				codeOutput = [codeOutput stringByAppendingFormat:@"tmp = CATransform3DIdentity;\n"];
-				codeOutput = [codeOutput stringByAppendingFormat:@"tmp.m34 = %0.4f;\n", value];
+				codeOutput = [codeOutput stringByAppendingFormat:@"tmp.m34 = %0.4ff;\n", value];
 				codeOutput = [codeOutput stringByAppendingFormat:@"transform = CATransform3DConcat(transform, tmp);\n"];
 				break;
 			}
@@ -204,25 +204,25 @@ typedef enum {
 
 	CATransform3D finalTransform = layer.transform;
 	output = [output stringByAppendingString:@"\n\n// Concatenated Transform:\nCATransform3D finalTransform = CATransform3DIdentity;\n"];
-	output = [output stringByAppendingFormat:@"finalTransform.m11 = %0.4f;\n", finalTransform.m11];
-	output = [output stringByAppendingFormat:@"finalTransform.m12 = %0.4f;\n", finalTransform.m12];
-	output = [output stringByAppendingFormat:@"finalTransform.m13 = %0.4f;\n", finalTransform.m13];
-	output = [output stringByAppendingFormat:@"finalTransform.m14 = %0.4f;\n", finalTransform.m14];
-	output = [output stringByAppendingFormat:@"finalTransform.m21 = %0.4f;\n", finalTransform.m21];
-	output = [output stringByAppendingFormat:@"finalTransform.m22 = %0.4f;\n", finalTransform.m22];
-	output = [output stringByAppendingFormat:@"finalTransform.m23 = %0.4f;\n", finalTransform.m23];
-	output = [output stringByAppendingFormat:@"finalTransform.m24 = %0.4f;\n", finalTransform.m24];
-	output = [output stringByAppendingFormat:@"finalTransform.m31 = %0.4f;\n", finalTransform.m31];
-	output = [output stringByAppendingFormat:@"finalTransform.m32 = %0.4f;\n", finalTransform.m32];
-	output = [output stringByAppendingFormat:@"finalTransform.m33 = %0.4f;\n", finalTransform.m33];
-	output = [output stringByAppendingFormat:@"finalTransform.m34 = %0.4f;\n", finalTransform.m34];
-	output = [output stringByAppendingFormat:@"finalTransform.m41 = %0.4f;\n", finalTransform.m41];
-	output = [output stringByAppendingFormat:@"finalTransform.m42 = %0.4f;\n", finalTransform.m42];
-	output = [output stringByAppendingFormat:@"finalTransform.m43 = %0.4f;\n", finalTransform.m43];
-	output = [output stringByAppendingFormat:@"finalTransform.m44 = %0.4f;\n", finalTransform.m44];
+	output = [output stringByAppendingFormat:@"finalTransform.m11 = %0.4ff;\n", finalTransform.m11];
+	output = [output stringByAppendingFormat:@"finalTransform.m12 = %0.4ff;\n", finalTransform.m12];
+	output = [output stringByAppendingFormat:@"finalTransform.m13 = %0.4ff;\n", finalTransform.m13];
+	output = [output stringByAppendingFormat:@"finalTransform.m14 = %0.4ff;\n", finalTransform.m14];
+	output = [output stringByAppendingFormat:@"finalTransform.m21 = %0.4ff;\n", finalTransform.m21];
+	output = [output stringByAppendingFormat:@"finalTransform.m22 = %0.4ff;\n", finalTransform.m22];
+	output = [output stringByAppendingFormat:@"finalTransform.m23 = %0.4ff;\n", finalTransform.m23];
+	output = [output stringByAppendingFormat:@"finalTransform.m24 = %0.4ff;\n", finalTransform.m24];
+	output = [output stringByAppendingFormat:@"finalTransform.m31 = %0.4ff;\n", finalTransform.m31];
+	output = [output stringByAppendingFormat:@"finalTransform.m32 = %0.4ff;\n", finalTransform.m32];
+	output = [output stringByAppendingFormat:@"finalTransform.m33 = %0.4ff;\n", finalTransform.m33];
+	output = [output stringByAppendingFormat:@"finalTransform.m34 = %0.4ff;\n", finalTransform.m34];
+	output = [output stringByAppendingFormat:@"finalTransform.m41 = %0.4ff;\n", finalTransform.m41];
+	output = [output stringByAppendingFormat:@"finalTransform.m42 = %0.4ff;\n", finalTransform.m42];
+	output = [output stringByAppendingFormat:@"finalTransform.m43 = %0.4ff;\n", finalTransform.m43];
+	output = [output stringByAppendingFormat:@"finalTransform.m44 = %0.4ff;\n", finalTransform.m44];
 	
 	outputView.text = output;
-	[UIView animateWithDuration:0.33 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+	[UIView animateWithDuration:0.33 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
 		outputView.alpha = 1.0;
 	} completion:^(BOOL finished){	}];
 }
@@ -233,7 +233,7 @@ typedef enum {
 	outputView.text = @"\nThe output has been copied to the iOS pasteboard.\n\nPress ⌘-c to copy it to the OSX clipboard, for pasting into xcode.\n\nClick the action button to dismiss this text view.";
 	outputView.alpha = 0.0;
 	
-	[UIView animateWithDuration:0.2 delay:0.1 options:UIViewAnimationCurveEaseOut animations:^{
+	[UIView animateWithDuration:0.2 delay:0.1 options:UIViewAnimationOptionCurveEaseOut animations:^{
 		outputView.alpha = 1.0;
 	} completion:^(BOOL finished){	}];
 }
@@ -325,7 +325,7 @@ typedef enum {
 
 - (void)layoutSubviews {
 	[super layoutSubviews];
-	int tableWidth = self.contentView.frame.size.width;
+	int tableWidth = (int)self.contentView.frame.size.width;
 	slider.frame = CGRectMake(slider.frame.origin.x, slider.frame.origin.y, tableWidth - 15, slider.frame.size.height);
 	self.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
 }

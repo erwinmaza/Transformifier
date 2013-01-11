@@ -1,4 +1,4 @@
-//  ViewController.h
+//  RootViewController.h
 //  Created by erwin on 12/14/12.
 
 /*
@@ -27,8 +27,7 @@
 */
 
 
-@interface ViewController : UIViewController
+@interface RootViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *victimLabel;
 
 @end
