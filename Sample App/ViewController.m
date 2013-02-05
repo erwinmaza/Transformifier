@@ -27,14 +27,14 @@
 */
 
 
-#import "RootViewController.h"
+#import "ViewController.h"
 
-@interface RootViewController ()
+@interface ViewController ()
 
 
 @end
 
-@implementation RootViewController
+@implementation ViewController
 
 - (void)viewDidLoad {
 	LogMethod

@@ -27,7 +27,7 @@
 */
 
 
-@interface RootViewController : UIViewController
+@interface ViewController : UIViewController
 
 
 @end
