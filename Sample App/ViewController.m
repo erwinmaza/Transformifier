@@ -1,4 +1,4 @@
-//  RootViewController.m
+//  ViewController.m
 //  Created by erwin on 12/14/12.
 
 /*
@@ -28,13 +28,17 @@
 
 
 #import "ViewController.h"
+#import "Transformifier.h"
 
 @interface ViewController ()
 
+	@property (nonatomic, strong) Transformifier *transformifier;
 
 @end
 
 @implementation ViewController
+
+@synthesize victimLabel, transformifier;
 
 - (void)viewDidLoad {
 	LogMethod
@@ -44,6 +48,23 @@
 - (void)viewDidAppear:(BOOL)animated {
 	LogMethod
 	[super viewDidAppear:animated];
+	self.transformifier = [[Transformifier alloc] initForLayer:victimLabel.layer];
+
+	if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+		transformifier.yOffset = 25;
+		transformifier.height = 350;
+	} else {
+		transformifier.yOffset = 100;
+		transformifier.height = 850;
+	}
+
+	transformifier.view.alpha = 0.0;
+	
+	[self.view.superview insertSubview:transformifier.view aboveSubview:self.view];
+
+	[UIView animateWithDuration:0.33 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+		transformifier.view.alpha = 1.0;
+	} completion:^(BOOL finished){	}];
 }
 
 - (void)didReceiveMemoryWarning {
