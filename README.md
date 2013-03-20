@@ -55,13 +55,13 @@ You'll need to download this entire repo for the sample app to work, as the Tran
 
 * The first section contains the active transforms, while the second is used as a source of new transforms or a dump of unneeded transforms.
 
-![Transformifier Table Sections](Transformifier/wiki/images/transformifier1.png)
+![Screenshot 1](https://raw.github.com/erwinmaza/Transformifier/gh-pages/images/transformifier1.png)
 
 2 Each row in the table describes what that transform does. 
 
 * Use the slider to adjust the amount of transformation, and the segmented control to choose which axis to act upon.
 
-![Transformifier Table Sections](Transformifier/wiki/images/transformifier2.png)
+![Screenshot 2](https://raw.github.com/erwinmaza/Transformifier/gh-pages/images/transformifier2.png)
  
 3 Move rows from the source section to the active section to add a new transform.
 
@@ -88,10 +88,9 @@ You'll need to download this entire repo for the sample app to work, as the Tran
 	* A single CATransform3D containing the final, concatenated effect of the active transforms.
 * Use either the step-by-step transform functions or the final aggregate to apply to your target UI element's layer.  
 
-![Transformifier Table Sections](Transformifier/wiki/images/transformifier3.png)  
-![Transformifier Table Sections](Transformifier/wiki/images/transformifier4.png)  
-![Transformifier Table Sections](Transformifier/wiki/images/transformifier5.png)  
-
+![Screenshot 3](https://raw.github.com/erwinmaza/Transformifier/gh-pages/images/transformifier3.png)
+![Screenshot 4](https://raw.github.com/erwinmaza/Transformifier/gh-pages/images/transformifier4.png)
+![Screenshot 5](https://raw.github.com/erwinmaza/Transformifier/gh-pages/images/transformifier5.png)
 
 
 
