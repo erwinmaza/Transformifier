@@ -1,0 +1,180 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>Transformifier</title>
+  <meta name="description" content="Generic Interactive 3D Transformation Tweaking Tool for iOS Development">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Transformifier</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">Generic Interactive 3D Transformation Tweaking Tool for iOS Development</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/erwinmaza/Transformifier/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/erwinmaza/Transformifier/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/erwinmaza/Transformifier" class="code">View Transformifier on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>Transformifier</h1>
+
+<p>Generic Interactive 3D Transformation Tweaking Tool for iOS Development</p>
+
+<p><strong>The scenario:</strong><br>
+Your designer hands you psd or png files to skin the app. </p>
+
+<p>No problem. Except there's this element that's like this original element, except it's skewed just so. </p>
+
+<p>The gotcha: the element is dynamic at runtime.  Thus, you can't simply save the designer's sample as a static png. You must render the element and recreate the skew in code.</p>
+
+<p>And no, the transformation values are not available, since they were applied freehand in Photoshop.</p>
+
+<p><strong>One approach:</strong><br>
+After spending an inordinate amount of time applying a series of transforms in a never-ending trial-and-error nightmare, you realize it's not a simple 2D skew, or even couple of 3D axis rotations. What the heck did the designer do?</p>
+
+<p><strong>A Better Idea:</strong><br>
+Temporarily install and instantiate a Transformifier. Set it to act on the CALayer of the victim element on the screen, and interactively set functions and values until you get exactly the desired effect. Click the output icon to get fully formed, ready to paste text to replicate the effect in code.</p>
+
+<h2>Installation:</h2>
+
+<p>1 Copy the 2 files in the Transformifier folder and add them to your project:</p>
+
+<pre><code>* Transformifier.h
+* Transformifier.m
+</code></pre>
+
+<p>2 Add this line to the UIViewController's implementation file where you need some transformication:</p>
+
+<pre><code>* #import "Transformifier.h"
+</code></pre>
+
+<p>3 Ensure QuartzCore.framework is part of the project, and #import  as appropriate.</p>
+
+<p>4 Instantiate a Transformifier and add it's view to your view controller's superview. Be sure to retain the Transformifier in the host view controller.</p>
+
+<p>5 Optionally set the transformifier's yOffset or height properties to allow a better view of the UI element being transformified.</p>
+
+<h3>Example code usage:</h3>
+
+<pre><code>- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    self.transformifier = [[Transformifier alloc] initForLayer:victimLabel.layer];
+    [self.view.superview insertSubview:transformifier.view aboveSubview:self.view];
+}
+</code></pre>
+
+<h2>Sample App</h2>
+
+<p>You'll need to download this entire repo for the sample app to work, as the Transformifier.xcodeproj references both the Transformifier and Sample App top level folders (plus the snazzy 10-minute-photoshop-hack app icons).</p>
+
+<h2>Tool usage:</h2>
+
+<p>1 The transformifier instantiates as a UITableView with 2 sections. </p>
+
+<ul>
+<li>The first section contains the active transforms, while the second is used as a source of new transforms or a dump of unneeded transforms.</li>
+</ul><p><img src="Transformifier/wiki/images/transformifier1.png" alt="Transformifier Table Sections"></p>
+
+<p>2 Each row in the table describes what that transform does. </p>
+
+<ul>
+<li>Use the slider to adjust the amount of transformation, and the segmented control to choose which axis to act upon.</li>
+</ul><p><img src="Transformifier/wiki/images/transformifier2.png" alt="Transformifier Table Sections"></p>
+
+<p>3 Move rows from the source section to the active section to add a new transform.</p>
+
+<ul>
+<li>Move rows from the active section to the source section to remove its effect. </li>
+<li>The source section will always contain one of each type of transform regardless of what you move out or into it. </li>
+<li>You can add as many transforms as you need to achieve the affect you need.<br>
+</li>
+</ul><p>4 Since some transforms are not commutative, you may reorder them in the active section to get a different effect.</p>
+
+<ul>
+<li>Reordering rows in the source section has no effect, except possibly placing a frequently used transform within easier reach.<br>
+</li>
+</ul><p>5 If you get tangled up, click the reload button to tango on.  </p>
+
+<p>6 Once your target effect is achieved, click the actions button to reveal the code needed to replicate it.</p>
+
+<ul>
+<li>Click in the new visible UITextView to copy its contents to the iOS pasteboard in the simulator</li>
+<li>Press ⌘-c to copy the code to the OSX clipboard, then paste it into xcode.</li>
+<li>There are 3 types of output:
+
+<ul>
+<li>A human-readable description of all the transforms applied</li>
+<li>A set of CATransform3D functions to replicate the transforms in code</li>
+<li>A single CATransform3D containing the final, concatenated effect of the active transforms.</li>
+</ul>
+</li>
+<li>Use either the step-by-step transform functions or the final aggregate to apply to your target UI element's layer.<br>
+</li>
+</ul><p><img src="Transformifier/wiki/images/transformifier3.png" alt="Transformifier Table Sections"><br><img src="Transformifier/wiki/images/transformifier4.png" alt="Transformifier Table Sections"><br><img src="Transformifier/wiki/images/transformifier5.png" alt="Transformifier Table Sections"></p>
+
+<h2>License</h2>
+
+<p>Copyright (c) 2012 eMaza Mobile. All rights reserved.</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/erwinmaza" class="avatar"><img src="https://secure.gravatar.com/avatar/5dd3d9ca6ca38fee028eda9aced22ada?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" width="48" height="48"/></a> <a href="https://github.com/erwinmaza">erwinmaza</a> maintains <a href="https://github.com/erwinmaza/Transformifier">Transformifier</a></p>
+
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="http://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/erwinmaza/Transformifier/tarball/master" class="tar">tar</a><a href="https://github.com/erwinmaza/Transformifier/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+  
+</body>
+</html>
