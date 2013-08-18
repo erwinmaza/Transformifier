@@ -305,7 +305,10 @@ typedef enum {
 		self.axisChooser = [[UISegmentedControl alloc] initWithItems:@[@"X", @"Y", @"Z"]];
 		axisChooser.frame = CGRectMake(95, 4, 75, 25);
 		axisChooser.tintColor = [UIColor lightGrayColor];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 		axisChooser.segmentedControlStyle = UISegmentedControlStyleBar;
+#pragma clang diagnostic pop
 		[self.contentView addSubview:axisChooser];
 		
 		self.valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(175, 2, 45, 25)];
