@@ -36,6 +36,9 @@ typedef enum {
 	transformTypePerspective= 5
 } enumTransformType;
 
+#define kSliderDefaultValue_Scale 100.0
+#define kSliderDefaultValue_Other 0.0
+
 @interface Transformifier()
 
 	@property (nonatomic, strong) CALayer			*layer;
@@ -92,11 +95,11 @@ typedef enum {
 
 - (void)reload {
 	NSNumber *zeroInt = [NSNumber numberWithInt:0];
-	NSMutableDictionary *rotate =		[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeRotate],		@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  0.0] }];
-	NSMutableDictionary *translate =	[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeTranslate],	@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  0.0] }];
-	NSMutableDictionary *scale =		[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeScale],		@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:100.0] }];
-	NSMutableDictionary *skew = 		[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeSkew],		@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  0.0] }];
-	NSMutableDictionary *perspective =	[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypePerspective],@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  0.0] }];
+	NSMutableDictionary *rotate =		[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeRotate],		@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  kSliderDefaultValue_Other] }];
+	NSMutableDictionary *translate =	[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeTranslate],	@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  kSliderDefaultValue_Other] }];
+	NSMutableDictionary *scale =		[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeScale],		@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:kSliderDefaultValue_Scale] }];
+	NSMutableDictionary *skew = 		[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypeSkew],		@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  kSliderDefaultValue_Other] }];
+	NSMutableDictionary *perspective =	[NSMutableDictionary dictionaryWithDictionary:@{@"type" : [NSNumber numberWithInt:transformTypePerspective],@"axisIndex" : zeroInt, @"value" : [NSNumber numberWithFloat:  kSliderDefaultValue_Other] }];
 
 	self.transformsArray =	[NSMutableArray arrayWithArray:@[ rotate, translate, scale ]];
 	self.sourceArray =		[NSMutableArray arrayWithArray:@[ skew, perspective, rotate, translate, scale ]];
@@ -407,9 +410,9 @@ typedef enum {
 - (void)resetSlider:(UITapGestureRecognizer *)sender
 {
     if (transformType == transformTypeScale) {
-        slider.value = 100;
+        slider.value = kSliderDefaultValue_Scale;
     } else {
-        slider.value = 0;
+        slider.value = kSliderDefaultValue_Other;
     }
 
     [self setValueLabel];
