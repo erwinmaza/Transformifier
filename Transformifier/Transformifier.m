@@ -387,7 +387,7 @@ typedef enum {
 }
 
 - (void)setAxisIndex {
-	[transformData setValue:[NSNumber numberWithInt:axisChooser.selectedSegmentIndex] forKey:@"axisIndex"];
+	[transformData setValue:[NSNumber numberWithInt:(int)axisChooser.selectedSegmentIndex] forKey:@"axisIndex"];
 	[delegate applyTransform];
 }
 
