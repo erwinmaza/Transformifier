@@ -319,6 +319,10 @@ typedef enum {
 		self.slider = [[UISlider alloc] initWithFrame:CGRectMake(10, 35, 200, 20)];
 		[self.contentView addSubview:slider];
 
+        UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resetSlider:)];
+        doubleTap.numberOfTapsRequired = 2;
+        [slider addGestureRecognizer:doubleTap];
+
 		[axisChooser addTarget:self action:@selector(setAxisIndex)  forControlEvents:UIControlEventValueChanged];
 		[slider		 addTarget:self action:@selector(setValueLabel) forControlEvents:UIControlEventValueChanged];
 	}
@@ -398,6 +402,17 @@ typedef enum {
 		
 	valueLabel.text = [NSString stringWithFormat:@"%0.1f%@", slider.value, unit];
 	[delegate applyTransform];
+}
+
+- (void)resetSlider:(UITapGestureRecognizer *)sender
+{
+    if (transformType == transformTypeScale) {
+        slider.value = 100;
+    } else {
+        slider.value = 0;
+    }
+
+    [self setValueLabel];
 }
 
 
